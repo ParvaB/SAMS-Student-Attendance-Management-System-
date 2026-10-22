@@ -28,7 +28,7 @@ export default function CorrectionWindowSimulator() {
   // Pick a session to test correction on (default SESS-1092 or first one)
   const [selectedSessionId, setSelectedSessionId] = useState('SESS-1092');
   const [newStatus, setNewStatus] = useState('PRESENT');
-  const [editReason, setEditReason] = useState('Rectified proxy miscount during roll call');
+  const [editReason, setEditReason] = useState('Rectified roll call miscount during review');
 
   // Modal for post-48h escalation
   const [escalationModalOpen, setEscalationModalOpen] = useState(false);

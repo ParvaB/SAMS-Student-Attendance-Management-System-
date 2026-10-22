@@ -7,14 +7,13 @@ export default function TamperViolationModal() {
 
   if (!tamperViolationModalOpen) return null;
 
-  const mockSqlPayload = `/* Malicious SQL Query Executed by SYSADMIN */
-DELETE FROM sams_audit_ledger 
-WHERE log_id = 'LOG-2026-9040';
+  const mockSqlPayload = `/* Simulated Ledger Mutation Attempt by SYSADMIN */
+Action: REMOVE_LOG_ENTRY [log_id = 'LOG-2026-9040']
 
--- Result:
-FATAL EXCEPTION: [ORA-28115 / PG-IMMUTABLE-RULE-42]
-PostgreSQL Append-Only Rule Violation: Table 'sams_audit_ledger' has TRIGGER 'prevent_audit_tampering' 
-which strictly disallows UPDATE, DELETE, and TRUNCATE operations even for SUPERUSER / SYSADMIN.
+Result:
+SECURITY EXCEPTION: [POLICY-IMMUTABLE-RULE-42]
+Append-Only Rule Violation: The audit ledger strictly disallows modification or deletion 
+operations even for SUPERUSER / SYSADMIN credentials.
 
 CRYPTOGRAPHIC CHECK:
   Previous Block Hash: 7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f9e8d7c6b5a4f3e2d1c0b9a8f7e6d
